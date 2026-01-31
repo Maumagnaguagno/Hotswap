@@ -3,7 +3,7 @@
 #-----------------------------------------------
 # Mau Magnaguagno
 #-----------------------------------------------
-# Swap hotend and bed temperature of G-CODE
+# Swap hotend and bed temperature of G-code
 #-----------------------------------------------
 
 filename, hotend_temperature, bed_temperature = ARGV
