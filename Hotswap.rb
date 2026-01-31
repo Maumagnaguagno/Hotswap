@@ -9,7 +9,7 @@
 filename, hotend_temperature, bed_temperature = ARGV
 raise 'Missing temperatures' unless hotend_temperature and bed_temperature
 gcode = File.read(filename)
-gcode.gsub!(/^M(104|109|140|190) S([^0]\d*)/) {|l|
+gcode.gsub!(/^M(104|109|140|190) S(?!0)\d+/) {|l|
   n = case $1
   when '104' then "M104 S#{hotend_temperature}" # Set hotend temperature
   when '109' then "M109 S#{hotend_temperature}" # Wait for hotend temperature
