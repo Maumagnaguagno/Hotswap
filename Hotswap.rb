@@ -11,10 +11,8 @@ abort 'Missing temperature' unless hotend_temperature and bed_temperature
 gcode = File.read(filename)
 gcode.gsub!(/^M(104|109|140|190)(.*)S(?!0)\d+/) {|l|
   n = case $1
-  when '104' then "M104#{$2}S#{hotend_temperature}" # Set hotend temperature
-  when '109' then "M109#{$2}S#{hotend_temperature}" # Wait for hotend temperature
-  when '140' then "M140#{$2}S#{bed_temperature}" # Set bed temperature
-  when '190' then "M190#{$2}S#{bed_temperature}" # Wait for bed temperature
+  when '104','109' then "M#{$1}#{$2}S#{hotend_temperature}" # Set/wait hotend temperature
+  when '140','190' then "M#{$1}#{$2}S#{bed_temperature}" # Set/wait bed temperature
   end
   puts "Replace '#{l}' with '#{n}'"
   n
