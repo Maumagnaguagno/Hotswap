@@ -3,11 +3,11 @@
 #-----------------------------------------------
 # Mau Magnaguagno
 #-----------------------------------------------
-# Swap hotend and bed temperature of G-code
+# Swap hotend and bed temperatures of G-code
 #-----------------------------------------------
 
 filename, hotend_temperature, bed_temperature = ARGV
-raise 'Missing temperatures' unless hotend_temperature and bed_temperature
+abort 'Missing temperature' unless hotend_temperature and bed_temperature
 gcode = File.read(filename)
 gcode.gsub!(/^M(104|109|140|190) S(?!0)\d+/) {|l|
   n = case $1
