@@ -11,7 +11,7 @@ if ARGV[0] == '-h'
 else
   abort 'Expected integer in hotend temperature' unless (hotend_temperature = ARGV.shift).match?(/^\d+$/)
   abort 'Expected integer in bed temperature' unless (bed_temperature = ARGV.shift).match?(/^\d+$/)
-  ARGV.each {|filename|
+  (ARGV.empty? ? Dir.glob('*.gcode') : ARGV).each {|filename|
     puts filename
     (gcode = File.read(filename)).gsub!(/^M(104|109|140|190)(.*)S(?!0)\d+/) {|l|
       n = case $1
