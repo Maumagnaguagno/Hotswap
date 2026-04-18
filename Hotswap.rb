@@ -6,11 +6,11 @@
 # Swap hotend and bed temperatures of G-code
 #-----------------------------------------------
 
-if ARGV[0] == '-h'
+if ARGV.size < 2 or ARGV[0] == '-h'
   puts 'ruby Hotswap.rb hotend_temperature bed_temperature {filenames}'
 else
-  abort 'Expected integer in hotend temperature' unless (hotend_temperature = ARGV.shift)&.match?(/^\d+$/)
-  abort 'Expected integer in bed temperature' unless (bed_temperature = ARGV.shift)&.match?(/^\d+$/)
+  abort 'Expected integer in hotend temperature' unless (hotend_temperature = ARGV.shift).match?(/^\d+$/)
+  abort 'Expected integer in bed temperature' unless (bed_temperature = ARGV.shift).match?(/^\d+$/)
   (ARGV.empty? ? Dir.glob('*.gcode') : ARGV).each {|filename|
     puts filename
     (gcode = File.read(filename)).gsub!(/^M(104|109|140|190)(.*S)(?!0)\d+/) {|l|
