@@ -1,4 +1,4 @@
-# Hotswap
+# Hotswap [![Actions Status](https://github.com/Maumagnaguagno/Hotswap/workflows/build/badge.svg)](https://github.com/Maumagnaguagno/Hotswap/actions)
 **Swap hotend and bed temperatures of G-code**
 
 In 3D printing one can easily swap the material to make a new piece, but temperatures need to swap too.
